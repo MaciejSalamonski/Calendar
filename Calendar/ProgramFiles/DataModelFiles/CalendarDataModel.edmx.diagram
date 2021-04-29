@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Diagrams>
+      <Diagram DiagramId="06ca2994283b4cb2abfe604c4ca220e0" Name="Diagram1">
+        <EntityTypeShape EntityType="BazaDanychModel.Events" Width="1.5" PointX="3" PointY="0.875" FillColor="255, 192, 192" />
+        <EntityTypeShape EntityType="BazaDanychModel.EventsTypes" Width="1.5" PointX="0.75" PointY="1" FillColor="255, 192, 192" />
+        <AssociationConnector Association="BazaDanychModel.FK_Events_ToTable" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,108 @@
+﻿<Window x:Class="Calendar.DeleteEvent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calendar"
+        mc:Ignorable="d"
+        
+        Title="Usuwanie wydarzeń" 
+        Height="320" 
+        Width="270" 
+        ResizeMode="NoResize">
+    
+    <StackPanel Height="Auto" 
+                Background="#FF5D5D5D">
+
+        <Border DockPanel.Dock="Top">
+            <Grid Background="#FF5D5D5D">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="215"/>
+                    <ColumnDefinition Width="35"/>
+                </Grid.ColumnDefinitions>
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="23"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="160"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                
+                <DatePicker Background="#FF5D5D5D" 
+                            BorderBrush="#FF5D5D5D" 
+                            Foreground="Black" 
+                            x:Name="startPicker" 
+                            Grid.Row="2" 
+                            Grid.Column="1" 
+                            SelectedDateChanged="StartpickerSelectedDateChanged" 
+                            Width="120" 
+                            Height="25" 
+                            Grid.ColumnSpan="2"/>
+                
+                <ListBox  ItemsSource="{Binding Path=DailyEventList}" 
+                          Grid.Row="4" 
+                          Grid.Column="1" 
+                          ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                          ScrollViewer.CanContentScroll="True" 
+                          Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}, Path=Background}" 
+                          BorderBrush="{x:Null}" 
+                          x:Name="EventsListBox">
+                    
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Background="{Binding Path=priorityProperties.ColorOnList}" 
+                                  MinWidth="200">
+                                
+                                <Grid.ColumnDefinitions >
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="{Binding Path=eventProperties.Name}" 
+                                           Grid.Row="0"/>
+                                
+                                <TextBlock Text="{Binding Path=eventProperties.Note}" 
+                                           Grid.Row="1"/>
+                                
+                                <TextBlock Text="{Binding Path=eventProperties.TimeStart, StringFormat=hh:mm}" 
+                                           Grid.Column="0" 
+                                           Grid.Row="2"/>
+
+                                <TextBlock Text="{Binding Path=eventProperties.TimeEnd, StringFormat=\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ - hh:mm}" 
+                                           Grid.Column="0" 
+                                           Grid.Row="2"/>
+                                
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Border>
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1.4*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Click="DeleteClick" 
+                    Background="#FFFFA2A2" 
+                    Foreground="Black" 
+                    BorderBrush="Black" 
+                    Content="Usuń wydarzenie" 
+                    Grid.Column="1" 
+                    Width="100">
+            </Button>
+        </Grid>
+        
+    </StackPanel>
+</Window>

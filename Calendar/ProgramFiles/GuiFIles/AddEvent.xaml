@@ -1,0 +1,207 @@
+﻿<Window x:Class="Calendar.AddEvent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calendar"
+        mc:Ignorable="d"
+        
+        Title="Dodawanie wydarzenia"
+        Height="375" 
+        Width="500" 
+        ResizeMode="NoResize"
+        Background="#FF5D5D5D">
+
+    <DockPanel>
+        <Border BorderThickness="0,0,0,1"  
+                DockPanel.Dock="Top">
+            <Grid Height="86">
+
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="23"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="23"/>
+                </Grid.RowDefinitions>
+
+                <TextBox Text="Wydarzenie " 
+                     Grid.Column="1" 
+                     Grid.Row="1"  
+                     HorizontalAlignment="Center" 
+                     VerticalAlignment="Center" 
+                     Width="120" Height="23" 
+                     Background="#FFFFA2A2" 
+                     Foreground="Black" 
+                     BorderBrush="Black"/>
+                <TextBox Background="#FF2D2D30" 
+                     Foreground="White" 
+                     BorderBrush="Black" 
+                     Text="{Binding Path=eventProperties.Name, Mode=TwoWay}" 
+                     Grid.Row="1" 
+                     Grid.Column="3" 
+                     Height="23"/>
+                
+                <TextBox Text="Uwagi " 
+                     Grid.Column="1" 
+                     Grid.Row="3"  
+                     HorizontalAlignment="Center" 
+                     VerticalAlignment="Center" 
+                     Width="120" 
+                     Height="23" 
+                     Background="#FFFFA2A2" 
+                     Foreground="Black" 
+                     BorderBrush="Black"/>
+                <TextBox Background="#FF2D2D30" 
+                     Foreground="White" 
+                     BorderBrush="Black" 
+                     Text="{Binding Path=eventProperties.Note, Mode=TwoWay}" 
+                     Grid.Row="3" 
+                     Grid.Column="3" 
+                     Height="23"/>
+            </Grid>
+        </Border>
+
+        <Grid Background="#FF5D5D5D">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="23"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="23"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="23"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="23"/>
+            </Grid.RowDefinitions>
+
+            <TextBox Text="Rozpoczęcie " 
+                     Grid.Column="1" 
+                     Grid.Row="1"  
+                     HorizontalAlignment="Center" 
+                     VerticalAlignment="Center" 
+                     Width="120" 
+                     Height="23" 
+                     Background="#FFFFA2A2" 
+                     Foreground="Black" 
+                     BorderBrush="Black"/>
+
+            <DatePicker x:Name="startpicker"
+                        Background="#FF5D5D5D" 
+                        Foreground="Black" 
+                        BorderBrush="#FF5D5D5D"   
+                        Grid.Row="1" 
+                        Grid.Column="3" 
+                        SelectedDate="{Binding Path=eventProperties.TimeStart, Mode=TwoWay}" 
+                        Height="25"/>
+            <TextBox x:Name="startTime" 
+                     Background="#FF2D2D30" 
+                     Foreground="White" 
+                     BorderBrush="Black" 
+                     Text="12:00"
+                     Grid.Column="5" 
+                     Grid.Row="1" 
+                     Height="23"/>
+
+            <TextBox Text="Zakończenie " 
+                     Grid.Column="1" 
+                     Grid.Row="3"  
+                     HorizontalAlignment="Center" 
+                     VerticalAlignment="Center" 
+                     Width="120" 
+                     Height="23" 
+                     Background="#FFFFA2A2" 
+                     Foreground="Black" 
+                     BorderBrush="Black"/>
+            <DatePicker Background="#FF5D5D5D" 
+                        Foreground="Black" 
+                        BorderBrush="#FF5D5D5D" 
+                        x:Name="endpicker" 
+                        Grid.Row="3" 
+                        Grid.Column="3" 
+                        SelectedDate="{Binding Path=eventProperties.TimeEnd, Mode=TwoWay}" 
+                        Height="25"/>
+            <TextBox x:Name="endTime" 
+                     Background="#FF2D2D30" 
+                     Foreground="White" 
+                     BorderBrush="Black" 
+                     Text="12:00" 
+                     Grid.Column="5" 
+                     Grid.Row="3" 
+                     Height="223"/>
+
+            <TextBox Text="Priorytet wydarzenia" 
+                     Grid.Column="1" 
+                     Grid.Row="5"  
+                     HorizontalAlignment="Center" 
+                     VerticalAlignment="Center" 
+                     Width="120" 
+                     Height="23" 
+                     Background="#FFFFA2A2" 
+                     Foreground="Black" 
+                     BorderBrush="Black"/>
+
+            <ComboBox  x:Name="prioritesComboBox"
+                       Grid.Column="3" 
+                       Grid.Row="5" 
+                       ContextMenuOpening="ComboBoxContextMenuOpening" 
+                       DropDownOpened="ComboBoxDropDownOpened" 
+                       Height="23">
+                
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="ComboBoxItem">
+                        <Setter Property="Background" 
+                                Value="WhiteSmoke"/>
+                        <Setter Property="BorderBrush" 
+                                Value="Black"/>
+                        <Setter Property="Foreground" 
+                                Value="Black"/>
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+                
+                <ComboBox.ItemTemplate  >
+                    <DataTemplate >
+                        <Border BorderBrush="Black" 
+                                BorderThickness="1" 
+                                Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ComboBox}}, Path=ActualWidth}" 
+                                Background="{Binding ColorOnList}" 
+                                VerticalAlignment="Stretch" 
+                                MaxHeight="50">
+                            
+                            <StackPanel >
+                                <TextBlock Text="{Binding PriorityName}" 
+                                           Foreground="Black"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <Button Click="ButtonClick" 
+                    Foreground="Black" 
+                    Height="23" 
+                    Background="#FFFFA2A2" 
+                    Content="Dodaj wydarzenie" 
+                    BorderBrush="Black" 
+                    Grid.Column="3" 
+                    Grid.Row="9"/>
+
+        </Grid>
+    </DockPanel>
+</Window>

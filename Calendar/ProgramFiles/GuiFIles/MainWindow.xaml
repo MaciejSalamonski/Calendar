@@ -1,0 +1,385 @@
+﻿<Window x:Class="Calendar.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calendar"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        
+        Title="Planer" 
+        MinHeight="400" 
+        MinWidth="800" 
+        Width="800" 
+        Height="400" 
+        ResizeMode="CanResize" 
+        SizeToContent="WidthAndHeight" 
+        Background="#FF5D5D5D">
+    
+    <DockPanel>
+        <Border BorderThickness="0,0,0,1" 
+                BorderBrush="Black" 
+                DockPanel.Dock="Top">
+            <Grid Height="58">
+                
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="60"></ColumnDefinition>
+                    <ColumnDefinition Width="650"></ColumnDefinition>
+                    <ColumnDefinition Width="90"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Menu HorizontalAlignment="Center" 
+                      VerticalAlignment="Center" 
+                      BorderThickness="0" 
+                      Background="#FF2D2D30">
+                    
+                    <MenuItem  Height="39" 
+                               Width="41" 
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center" 
+                               VerticalContentAlignment="Stretch" 
+                               HorizontalContentAlignment="Center" 
+                               Padding="0" BorderBrush="{x:Null}" 
+                               BorderThickness="0" 
+                               FontFamily="Segoe UI Historic" 
+                               FontSize="18"  
+                               Foreground="White" 
+                               Background="#FF5D5D5D" 
+                               Click="MenuItemButton">
+
+                        <MenuItem.Icon>
+                            <Image Source="/ProgramFiles/Images/menu.png" 
+                                   Stretch="Fill" 
+                                   Margin="0,-10,-20,-10"/>
+                        </MenuItem.Icon>
+                        
+                        <MenuItem Background="#FFFFA2A2" 
+                                  Foreground="Black" 
+                                  Click="AddEventButton" 
+                                  BorderBrush="White">
+
+                            <MenuItem.Header>
+                                <TextBlock Text="Dodaj Wydarzenie" 
+                                           Foreground="Black"/>
+                            </MenuItem.Header>
+                        </MenuItem >
+                        
+                        <MenuItem Background="#FFFFA2A2" 
+                                  Foreground="Black" 
+                                  Click="DeleteEventButton" 
+                                  BorderBrush="White">
+
+                            <MenuItem.Header >
+                                <TextBlock Text="Usuń Wydarzenie" 
+                                           Foreground="Black"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </MenuItem>
+                </Menu>
+                
+                <Canvas  HorizontalAlignment="Center" 
+                         VerticalAlignment="Bottom" 
+                         DataContext="{Binding Source={x:Static sys:DateTime.Now }}" 
+                         Grid.Column="1" 
+                         Margin="280,0,361.5,48" 
+                         Background="Black">
+                    
+                    <TextBlock Text="{Binding StringFormat='{}{dddd, dd MMMM yyyy}' }" 
+                               FontSize="36" 
+                               FontFamily="BigNoodleTitling" 
+                               Canvas.Top="0" 
+                               Canvas.Left="2" 
+                               Foreground="Black"/>
+                    
+                    <TextBlock Text="{Binding StringFormat='{}{0:yyyy.MM.dd}' }" 
+                               FontSize="36" 
+                               Foreground="Black" 
+                               FontFamily="BigNoodleTitling" 
+                               Canvas.Top="0" 
+                               Canvas.Left="4"/>
+                    
+                    <TextBlock Text="{Binding StringFormat='{}{0:yyyy.MM.dd}' }" 
+                               FontSize="36" 
+                               Foreground="Black" 
+                               FontFamily="BigNoodleTitling" 
+                               Canvas.Top="2" 
+                               Canvas.Left="2"/>
+                    
+                    <TextBlock Text="{Binding StringFormat='{}{0:yyyy.MM.dd}' }" 
+                               FontSize="36" 
+                               Foreground="Black" 
+                               FontFamily="BigNoodleTitling" 
+                               Canvas.Top="2" 
+                               Canvas.Left="4"/>
+                    
+                    <TextBlock Text="{Binding StringFormat='{}{0:yyyy.MM.dd}' }" 
+                               FontSize="36" 
+                               FontFamily="BigNoodleTitling" 
+                               Canvas.Left="4" 
+                               Foreground="LightPink"/>
+                </Canvas>
+
+                <Canvas  HorizontalAlignment="Center" 
+                         VerticalAlignment="Bottom" 
+                         DataContext="{Binding Source={x:Static sys:DateTime.Now }}" 
+                         Grid.Column="2" 
+                         Margin="-10,0,361.5,48" 
+                         Background="Black">
+                    
+                    <TextBlock Text="{Binding StringFormat='{}{dddd, dd MMMM yyyy}' }" 
+                               FontSize="36" 
+                               FontFamily="BigNoodleTitling" 
+                               Canvas.Top="0" 
+                               Canvas.Left="2" 
+                               Foreground="Black"/>
+                    
+                    <TextBlock Text="{Binding StringFormat='{}{0:HH:mm}' }" 
+                               FontSize="36" Foreground="Black" 
+                               FontFamily="BigNoodleTitling" 
+                               Canvas.Top="0" 
+                               Canvas.Left="4"/>
+                    
+                    <TextBlock Text="{Binding StringFormat='{}{0:HH:mm}' }" 
+                               FontSize="36" 
+                               Foreground="Black" 
+                               FontFamily="BigNoodleTitling" 
+                               Canvas.Top="2" 
+                               Canvas.Left="2"/>
+                    
+                    <TextBlock Text="{Binding StringFormat='{}{0:HH:mm}' }" 
+                               FontSize="36" 
+                               Foreground="Black" 
+                               FontFamily="BigNoodleTitling" 
+                               Canvas.Top="2" 
+                               Canvas.Left="4"/>
+                    
+                    <TextBlock Text="{Binding StringFormat='{}{0:HH:mm}' }" 
+                               FontSize="36" 
+                               FontFamily="BigNoodleTitling" 
+                               Canvas.Left="4" 
+                               Foreground="LightPink"/>
+                </Canvas>
+            </Grid>
+        </Border>
+        
+        <Grid DockPanel.Dock="Bottom" 
+              Name="CalendarGrid" 
+              RenderTransformOrigin="0.5,0.5">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*" ></ColumnDefinition>
+                <ColumnDefinition Width="1.4*" MinWidth="230"></ColumnDefinition>
+                <ColumnDefinition x:Name="CalendarColumn" Width="2*" ></ColumnDefinition>
+                <ColumnDefinition Width="1.3*" MinWidth="110"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="3">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="6"/>
+                </Grid.ColumnDefinitions>
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Column="1"
+                           Grid.Row="0"
+                           HorizontalAlignment="Left"  
+                           VerticalAlignment="Center" 
+                           Foreground="Black" FontSize="20">
+                           Miasto :
+                </TextBlock>
+      
+                <TextBox Name="cityTextBox"
+                         Grid.Column="1" 
+                         Grid.Row="0"  
+                         HorizontalAlignment="Right" 
+                         VerticalAlignment="Center" 
+                         Width="100" 
+                         TextChanged="CityTextBoxTextChanged" 
+                         Background="#FF2D2D30" 
+                         BorderBrush="Black" 
+                         Foreground="White"/>
+
+                <Button  Name="showWeather" 
+                         Grid.Column="1" 
+                         Grid.Row="2" 
+                         Content="Obecna pogoda" 
+                         HorizontalAlignment="Left" 
+                         VerticalAlignment="Top" 
+                         Width="90" 
+                         Background="#FFFFA2A2" 
+                         Foreground="#FF080808" 
+                         Click="WeatherButton" 
+                         BorderBrush="Black"/>
+                
+                <Button  Name="showForecast" 
+                         Grid.Column="1" 
+                         Grid.Row="2" 
+                         Content="Prognoza pogody" 
+                         HorizontalAlignment="Right" 
+                         VerticalAlignment="Top" 
+                         Width="100" 
+                         Background="#FFFFA2A2" 
+                         Foreground="Black" 
+                         Click="ForecastButton" 
+                         BorderBrush="Black"/>
+
+                <Image x:Name="weatherLogo" 
+                       Grid.Column="1" 
+                       Grid.Row="4" 
+                       HorizontalAlignment="Center"  
+                       VerticalAlignment="Center"/>
+
+                <TextBlock Grid.Column="1" 
+                           Grid.Row ="5" 
+                           HorizontalAlignment="Left"  
+                           VerticalAlignment="Center" 
+                           Foreground="Black" 
+                           FontSize="16">  
+                           Temperatura :
+                </TextBlock>
+                
+                <TextBox Name="temperatureTextBox" 
+                         Grid.Column="1" 
+                         Grid.Row="5"  
+                         HorizontalAlignment="Right" 
+                         VerticalAlignment="Center" 
+                         Width="70" 
+                         Background="#FF2D2D30" 
+                         Foreground="White" 
+                         BorderBrush="Black"/>
+
+                <TextBlock Grid.Column="1" 
+                           Grid.Row ="6" 
+                           HorizontalAlignment="Left"  
+                           VerticalAlignment="Center" 
+                           Foreground="Black" 
+                           FontSize="16">  
+                           Wiatr :
+                </TextBlock>
+                
+                <TextBox Name="windSpeedTextBox" 
+                         Grid.Column="1" 
+                         Grid.Row="6"  
+                         HorizontalAlignment="Right" 
+                         VerticalAlignment="Center" 
+                         Width="70" 
+                         Background="#FF2D2D30" 
+                         Foreground="White" 
+                         BorderBrush="Black"/>
+
+                <TextBlock Grid.Column="1" 
+                           Grid.Row ="7" 
+                           HorizontalAlignment="Left"  
+                           VerticalAlignment="Center" 
+                           Foreground="Black" 
+                           FontSize="16">  
+                           Ciśnienie :
+                </TextBlock>
+                
+                <TextBox Name="pressureTextBox" 
+                         Grid.Column="1" 
+                         Grid.Row="7"  
+                         HorizontalAlignment="Right" 
+                         VerticalAlignment="Center" 
+                         Width="70" 
+                         Background="#FF2D2D30" 
+                         Foreground="White" 
+                         BorderBrush="Black"/>
+
+                <TextBlock Grid.Column="1" 
+                           Grid.Row ="8" 
+                           HorizontalAlignment="Left"  
+                           VerticalAlignment="Center" 
+                           Foreground="Black" 
+                           FontSize="16">  
+                           Wilgotność :
+                </TextBlock>
+                
+                <TextBox Name="humidityTextBox" 
+                         Grid.Column="1" 
+                         Grid.Row="8"  
+                         HorizontalAlignment="Right" 
+                         VerticalAlignment="Center" 
+                         Width="70" 
+                         Background="#FF2D2D30" 
+                         Foreground="White" 
+                         BorderBrush="Black"/>
+                
+            </Grid>
+            
+            <ListBox ItemsSource="{Binding Path=DailyEventList}" 
+                     ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                     MaxHeight="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=ActualHeight}" 
+                     ScrollViewer.CanContentScroll="True" 
+                     Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}, Path=Background}" 
+                     Grid.Column="1" 
+                     HorizontalAlignment="Center" 
+                     BorderBrush="{x:Null}" 
+                     x:Name="EventsListBox" 
+                     SelectionChanged="EventsListBoxSelectionChanged">
+                
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Background="{Binding Path=priorityProperties.ColorOnList}" 
+                              MinWidth="215">
+                            
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="{Binding Path=eventProperties.Name, UpdateSourceTrigger=PropertyChanged}" 
+                                       Grid.Row="0"/>
+
+                            <TextBlock Text="{Binding Path=eventProperties.Note, UpdateSourceTrigger=PropertyChanged}" 
+                                       Grid.Row="1"/>
+
+                            <TextBlock Text="{Binding Path=eventProperties.TimeStart, UpdateSourceTrigger=PropertyChanged, StringFormat=hh:mm}" 
+                                       Grid.Column="1" 
+                                       Grid.Row="2"/>
+
+                            <TextBlock Text="{Binding Path=eventProperties.TimeEnd, UpdateSourceTrigger=PropertyChanged, StringFormat = \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ - hh:mm}" 
+                                       Grid.Column="2" 
+                                       Grid.Row="2"/>
+
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <Viewbox Grid.Column="2" 
+                     Height="{Binding ElementName=CalendarGrid, Path=ActualHeight}" 
+                     HorizontalAlignment="Right">
+                
+                <Calendar HorizontalAlignment="Left" 
+                          SelectedDatesChanged="EventsListBoxSelectionChanged" 
+                          x:Name="CalendarContol" 
+                          Visibility="Visible" 
+                          VerticalAlignment="Stretch" 
+                          Foreground="White" 
+                          FontFamily="Dubai" 
+                          Background="#FFFFA2A2" 
+                          BorderBrush="Black" Width="190"/>
+                
+            </Viewbox>
+        </Grid>
+    </DockPanel>
+</Window>
